@@ -41,3 +41,13 @@ Once I achieved seamless and precise navigation between random points, I impleme
 In the subsequent weeks, I focused on implementing a simulated annealing algorithm to solve the Traveling Salesman Problem and find the optimal order to visit all waypoints in the maze. The system first computes a distance matrix between all points using A* pathfinding to get actual traversable distances rather than Euclidean distances, ensuring the solution accounts for walls and obstacles. I used a nearest-neighbor heuristic to generate a good initial solution, then applied simulated annealing. I integrated the system to work with mandatory start and finish points, ensuring the robot begins at the green marker and ends at the red marker while visiting all intermediate waypoints optimally.
 <br><br>
 I also implemented a visualization system using matplotlib animations that shows the maze layout, all waypoints, the full path, and an animated line that traces the robot's planned trajectory from start to finish.
+
+## Showcase
+### Maze 5x5
+![Maze 5x5](src/images/5x5.png)
+
+### Maze 9x9
+![Maze 9x9](src/images/9x9.png)
+
+### Maze 15x15
+![Maze 15x15](src/images/15x15.png)
