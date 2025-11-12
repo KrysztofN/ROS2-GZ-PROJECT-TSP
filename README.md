@@ -55,3 +55,5 @@ I also implemented a visualization system using matplotlib animations that shows
 ## TSP visualization
 https://github.com/user-attachments/assets/47f6d087-a449-45b8-b887-8e1df4986d2f
 
+## Gazebo simulation
+https://github.com/user-attachments/assets/e856a067-3093-4311-9b94-f473b074fc70
