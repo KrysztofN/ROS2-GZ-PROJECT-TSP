@@ -6,7 +6,7 @@ This project implements an autonomous robot that solves the Traveling Salesman P
 
 - **Procedural maze generation** with configurable dimensions
 - **TSP optimization** using simulated annealing algorithm
-- **A* pathfinding** for collision-free navigation between waypoints
+- **A star pathfinding** for collision-free navigation between waypoints
 - **Autonomous navigation** in Gazebo simulation environment
 - **ROS2-Gazebo bridge** for seamless communication
 
