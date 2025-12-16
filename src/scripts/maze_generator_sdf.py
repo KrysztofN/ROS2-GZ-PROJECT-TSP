@@ -22,6 +22,7 @@ CONFIG_DIR = Path("../worlds/config")
 SEED = int(time.time())
 random.seed(SEED)
 
+NUM_WALLS_TO_REMOVE = 5
 
 assert WIDTH % 2 == 1 and WIDTH >= 3
 assert HEIGHT % 2 == 1 and HEIGHT >= 3
@@ -83,6 +84,35 @@ def visit(maze, x, y):
             
             hasVisited.append((nextX, nextY))
             visit(maze, nextX, nextY)
+
+def add_multiple_paths(maze, num_walls_to_remove=5):
+    
+    removable_walls = []
+    
+    for x in range(1, WIDTH - 1):
+        for y in range(1, HEIGHT - 1):
+            if maze[(x, y)] == WALL:
+                # Horizontal wall (between left and right cells)
+                if (x % 2 == 0 and y % 2 == 1 and 
+                    maze.get((x-1, y)) == EMPTY and 
+                    maze.get((x+1, y)) == EMPTY):
+                    removable_walls.append((x, y))
+                # Vertical wall (between top and bottom cells)
+                elif (x % 2 == 1 and y % 2 == 0 and 
+                      maze.get((x, y-1)) == EMPTY and 
+                      maze.get((x, y+1)) == EMPTY):
+                    removable_walls.append((x, y))
+    
+    walls_to_remove = min(num_walls_to_remove, len(removable_walls))
+    if walls_to_remove > 0:
+        walls_removed = random.sample(removable_walls, walls_to_remove)
+        
+        for x, y in walls_removed:
+            maze[(x, y)] = EMPTY
+        
+        return len(walls_removed)
+    
+    return 0
 
 def getEmptySpaces():
     empty_spaces = []
@@ -309,6 +339,7 @@ def generateMappingJSON(occupancy_grid, start, end, num, filename="maze_mapping.
     }
     
     return maze_data
+
 def batch(i, json_content):
     global hasVisited, maze
     print(f"Generating maze {i}")
@@ -318,6 +349,10 @@ def batch(i, json_content):
 
     random.seed(time.time() * 1000 + i)
     visit(maze, 1, 1)
+    
+    # Adding multiple solution paths
+    num_removed = add_multiple_paths(maze, num_walls_to_remove=NUM_WALLS_TO_REMOVE)
+    print(f"  Removed {num_removed} walls to create alternative paths")
     
     start, end = selectStartEnd()
     
@@ -348,3 +383,4 @@ if __name__ == "__main__":
         json.dump(all_mazes_data, f, indent=2)
     
     print("\nGeneration complete!")
+    print(f"Generated {num_of_mazes} mazes with {NUM_WALLS_TO_REMOVE} alternative paths each")

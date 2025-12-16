@@ -3,9 +3,12 @@ import random
 import math
 from typing import List, Tuple, Optional
 import json
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from a_star_path import a_star_search, is_valid, is_unblocked  
+import os
+
 
 class OccupancyGridTSP:
     def __init__(self, 
@@ -19,6 +22,7 @@ class OccupancyGridTSP:
         self.cell_size = cell_size
         self.start_point = start_point
         self.finish_point = finish_point
+
         
         import a_star_path
         a_star_path.ROW = len(self.grid)
@@ -194,6 +198,109 @@ class OccupancyGridTSP:
         
         return best_route, best_cost
     
+    def held_karp(self):
+        cities_to_visit = list(range(1, self.n_points - 1))
+        n = len(cities_to_visit)
+        
+        if n == 0:
+            return [], 0.0
+        
+        direct_cost = self.dist_matrix[self.depot_idx, self.finish_idx]
+        if direct_cost == float('inf'):
+            return [], float('inf')
+        
+        if n == 1:
+            city = cities_to_visit[0]
+            cost = (self.dist_matrix[self.depot_idx, city] + 
+                    self.dist_matrix[city, self.finish_idx])
+            if cost == float('inf'):
+                return [], float('inf')
+            return [city], cost
+        
+        bit_to_city = {i: cities_to_visit[i] for i in range(n)}
+        
+        C = {}
+        
+        for k in range(n):
+            city = bit_to_city[k]
+            cost = self.dist_matrix[self.depot_idx, city]
+            C[(1 << k, k)] = (cost, -1) 
+        
+        from itertools import combinations
+        for subset_size in range(2, n + 1):
+            for subset in combinations(range(n), subset_size):
+                bits = 0
+                for bit in subset:
+                    bits |= 1 << bit
+                
+                for k in subset:
+                    prev_bits = bits & ~(1 << k)
+                    
+                    min_cost = float('inf')
+                    best_prev = None
+                    
+                    for m in subset:
+                        if m == k:
+                            continue
+                        
+                        if (prev_bits, m) not in C:
+                            continue
+                        
+                        prev_cost, _ = C[(prev_bits, m)]
+                        edge_cost = self.dist_matrix[bit_to_city[m], bit_to_city[k]]
+                        
+                        if prev_cost == float('inf') or edge_cost == float('inf'):
+                            continue
+                        
+                        total = prev_cost + edge_cost
+                        if total < min_cost:
+                            min_cost = total
+                            best_prev = m
+                    
+                    C[(bits, k)] = (min_cost, best_prev)
+        
+        all_bits = (1 << n) - 1
+        min_total = float('inf')
+        best_last = None
+        
+        for k in range(n):
+            if (all_bits, k) not in C:
+                continue
+            
+            path_cost, _ = C[(all_bits, k)]
+            final_edge = self.dist_matrix[bit_to_city[k], self.finish_idx]
+            
+            if path_cost == float('inf') or final_edge == float('inf'):
+                continue
+            
+            total = path_cost + final_edge
+            if total < min_total:
+                min_total = total
+                best_last = k
+        
+        if best_last is None:
+            return [], float('inf')
+        
+        path = []
+        bits = all_bits
+        current = best_last
+        
+        while current != -1:
+            path.append(bit_to_city[current])
+            if bits == (1 << current):
+                break
+            
+            new_bits = bits & ~(1 << current)
+            _, prev = C[(bits, current)]
+            bits = new_bits
+            current = prev
+        
+        path.reverse()
+        
+        return path, min_total
+    
+
+
     def _nearest_neighbor_initial(self, cities: List[int]):
         route = []
         unvisited = set(cities)
@@ -230,6 +337,7 @@ class OccupancyGridTSP:
     
 
     def visualize_tsp(self, path, waypoints, occupancy_grid, maze_name, cell_size=2.0):
+        matplotlib.use('agg')
         height = len(occupancy_grid)
         width = len(occupancy_grid[0])
         
@@ -314,27 +422,42 @@ def solve_tsp(maze_name, start, finish, occupancy_grid, points_to_visit):
         cell_size=2.0
     )
     
-    # Solve
-    best_route, best_cost = tsp.simulated_annealing(
+    # Solve Simulated Annealing
+    best_route_sa, best_cost_sa = tsp.simulated_annealing(
         initial_temp=1000,
         cooling_rate=0.995,
         min_temp=0.1,
         max_iterations=10000,
         verbose=True
     )
+
+    best_route_hk, best_cost_hk = tsp.held_karp()
+
+    tsp_result = {}
+    os.makedirs('results', exist_ok = True)
     
-    
-    if best_cost != float('inf'):
-        cost_check, is_valid = tsp.calculate_route_cost(best_route)
-        print(f"TSP cost: {cost_check:.2f}m")
+    if best_cost_sa != float('inf') and best_cost_hk != float('inf'):
+        print(f"TSP cost: {best_cost_sa:.2f}m")
         
-        full_path = tsp.get_full_path(best_route)
-        print(f"TSP full path: {len(full_path)} waypoints")
+        full_path_sa = tsp.get_full_path(best_route_sa)
+        full_path_hk = tsp.get_full_path(best_route_hk)
+
+        tsp_result['Simulated annealing'] = {"route": best_route_sa, "cost" : best_cost_sa}
+        tsp_result['Held-Karp'] = {"route": best_route_hk, "cost" : best_cost_hk}
+
+        tsp_result['Simulated annealing']['full route'] = [list(coord) for coord in full_path_sa]
+        tsp_result['Held-Karp']['full route'] = [list(coord) for coord in full_path_hk]
+
+
+        with open('results/tsp_results.json', 'w') as f:
+            json.dump(tsp_result, f, indent=2)
         
         print("Saving tsp animation...can take a while")
         try:
-            tsp.visualize_tsp([start] + full_path, points_to_visit, occupancy_grid, maze_name)
-            print("Animation saved!")
+            
+            tsp.visualize_tsp([start] + full_path_sa, points_to_visit, occupancy_grid, maze_name + "_sa")
+            tsp.visualize_tsp([start] + full_path_hk, points_to_visit, occupancy_grid, maze_name + "_hk")
+            print("Animations saved!")
         except:
             print("Animation could not be saved!")
-    return full_path
+    return full_path_sa
