@@ -248,7 +248,7 @@ def generateSDF(start, end, filename="maze_world.sdf"):
 '''
                 wall_id += 1
     
-    # Add green marker for start point
+    # White marker for start point
     start_x, start_y = gridToWorld(start[0], start[1])
     sdf_content += f'''    <!-- Start Point (Green) -->
     <model name="start_marker">
@@ -263,9 +263,9 @@ def generateSDF(start, end, filename="maze_world.sdf"):
             </cylinder>
           </geometry>
           <material>
-            <ambient>0 1 0 1</ambient>
-            <diffuse>0 1 0 1</diffuse>
-            <emissive>0 0.5 0 1</emissive>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
       </link>
@@ -273,7 +273,7 @@ def generateSDF(start, end, filename="maze_world.sdf"):
     
 '''
     
-    # Add red marker for end point
+    # Black marker for end point
     end_x, end_y = gridToWorld(end[0], end[1])
     sdf_content += f'''    <!-- End Point (Red) -->
     <model name="end_marker">
@@ -288,9 +288,9 @@ def generateSDF(start, end, filename="maze_world.sdf"):
             </cylinder>
           </geometry>
           <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-            <emissive>0.5 0 0 1</emissive>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
       </link>

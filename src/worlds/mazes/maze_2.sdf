@@ -423,34 +423,8 @@
       </link>
     </model>
     
-    <!-- Wall at grid (2, 3) -->
-    <model name="wall_14">
-      <static>true</static>
-      <pose>-5.0 -3.0 0.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
     <!-- Wall at grid (2, 4) -->
-    <model name="wall_15">
+    <model name="wall_14">
       <static>true</static>
       <pose>-5.0 -1.0 0.5 0 0 0</pose>
       <link name="link">
@@ -475,34 +449,8 @@
       </link>
     </model>
     
-    <!-- Wall at grid (2, 5) -->
-    <model name="wall_16">
-      <static>true</static>
-      <pose>-5.0 1.0 0.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
     <!-- Wall at grid (2, 6) -->
-    <model name="wall_17">
+    <model name="wall_15">
       <static>true</static>
       <pose>-5.0 3.0 0.5 0 0 0</pose>
       <link name="link">
@@ -528,7 +476,7 @@
     </model>
     
     <!-- Wall at grid (2, 8) -->
-    <model name="wall_18">
+    <model name="wall_16">
       <static>true</static>
       <pose>-5.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -554,7 +502,7 @@
     </model>
     
     <!-- Wall at grid (3, 0) -->
-    <model name="wall_19">
+    <model name="wall_17">
       <static>true</static>
       <pose>-3.0 -9.0 0.5 0 0 0</pose>
       <link name="link">
@@ -579,34 +527,8 @@
       </link>
     </model>
     
-    <!-- Wall at grid (3, 6) -->
-    <model name="wall_20">
-      <static>true</static>
-      <pose>-3.0 3.0 0.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
     <!-- Wall at grid (3, 8) -->
-    <model name="wall_21">
+    <model name="wall_18">
       <static>true</static>
       <pose>-3.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -632,7 +554,7 @@
     </model>
     
     <!-- Wall at grid (4, 0) -->
-    <model name="wall_22">
+    <model name="wall_19">
       <static>true</static>
       <pose>-1.0 -9.0 0.5 0 0 0</pose>
       <link name="link">
@@ -658,7 +580,7 @@
     </model>
     
     <!-- Wall at grid (4, 2) -->
-    <model name="wall_23">
+    <model name="wall_20">
       <static>true</static>
       <pose>-1.0 -5.0 0.5 0 0 0</pose>
       <link name="link">
@@ -683,34 +605,8 @@
       </link>
     </model>
     
-    <!-- Wall at grid (4, 3) -->
-    <model name="wall_24">
-      <static>true</static>
-      <pose>-1.0 -3.0 0.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
     <!-- Wall at grid (4, 4) -->
-    <model name="wall_25">
+    <model name="wall_21">
       <static>true</static>
       <pose>-1.0 -1.0 0.5 0 0 0</pose>
       <link name="link">
@@ -736,7 +632,7 @@
     </model>
     
     <!-- Wall at grid (4, 5) -->
-    <model name="wall_26">
+    <model name="wall_22">
       <static>true</static>
       <pose>-1.0 1.0 0.5 0 0 0</pose>
       <link name="link">
@@ -762,7 +658,7 @@
     </model>
     
     <!-- Wall at grid (4, 6) -->
-    <model name="wall_27">
+    <model name="wall_23">
       <static>true</static>
       <pose>-1.0 3.0 0.5 0 0 0</pose>
       <link name="link">
@@ -788,7 +684,7 @@
     </model>
     
     <!-- Wall at grid (4, 8) -->
-    <model name="wall_28">
+    <model name="wall_24">
       <static>true</static>
       <pose>-1.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -814,7 +710,7 @@
     </model>
     
     <!-- Wall at grid (5, 0) -->
-    <model name="wall_29">
+    <model name="wall_25">
       <static>true</static>
       <pose>1.0 -9.0 0.5 0 0 0</pose>
       <link name="link">
@@ -840,7 +736,7 @@
     </model>
     
     <!-- Wall at grid (5, 2) -->
-    <model name="wall_30">
+    <model name="wall_26">
       <static>true</static>
       <pose>1.0 -5.0 0.5 0 0 0</pose>
       <link name="link">
@@ -865,8 +761,34 @@
       </link>
     </model>
     
+    <!-- Wall at grid (5, 6) -->
+    <model name="wall_27">
+      <static>true</static>
+      <pose>1.0 3.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 2.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 2.0 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
     <!-- Wall at grid (5, 8) -->
-    <model name="wall_31">
+    <model name="wall_28">
       <static>true</static>
       <pose>1.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -892,7 +814,7 @@
     </model>
     
     <!-- Wall at grid (6, 0) -->
-    <model name="wall_32">
+    <model name="wall_29">
       <static>true</static>
       <pose>3.0 -9.0 0.5 0 0 0</pose>
       <link name="link">
@@ -918,7 +840,7 @@
     </model>
     
     <!-- Wall at grid (6, 2) -->
-    <model name="wall_33">
+    <model name="wall_30">
       <static>true</static>
       <pose>3.0 -5.0 0.5 0 0 0</pose>
       <link name="link">
@@ -944,7 +866,7 @@
     </model>
     
     <!-- Wall at grid (6, 4) -->
-    <model name="wall_34">
+    <model name="wall_31">
       <static>true</static>
       <pose>3.0 -1.0 0.5 0 0 0</pose>
       <link name="link">
@@ -969,34 +891,8 @@
       </link>
     </model>
     
-    <!-- Wall at grid (6, 5) -->
-    <model name="wall_35">
-      <static>true</static>
-      <pose>3.0 1.0 0.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
     <!-- Wall at grid (6, 6) -->
-    <model name="wall_36">
+    <model name="wall_32">
       <static>true</static>
       <pose>3.0 3.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1021,34 +917,8 @@
       </link>
     </model>
     
-    <!-- Wall at grid (6, 7) -->
-    <model name="wall_37">
-      <static>true</static>
-      <pose>3.0 5.0 0.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.0 2.0 1.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
     <!-- Wall at grid (6, 8) -->
-    <model name="wall_38">
+    <model name="wall_33">
       <static>true</static>
       <pose>3.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1074,7 +944,7 @@
     </model>
     
     <!-- Wall at grid (7, 0) -->
-    <model name="wall_39">
+    <model name="wall_34">
       <static>true</static>
       <pose>5.0 -9.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1100,7 +970,7 @@
     </model>
     
     <!-- Wall at grid (7, 8) -->
-    <model name="wall_40">
+    <model name="wall_35">
       <static>true</static>
       <pose>5.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1126,7 +996,7 @@
     </model>
     
     <!-- Wall at grid (8, 0) -->
-    <model name="wall_41">
+    <model name="wall_36">
       <static>true</static>
       <pose>7.0 -9.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1152,7 +1022,7 @@
     </model>
     
     <!-- Wall at grid (8, 1) -->
-    <model name="wall_42">
+    <model name="wall_37">
       <static>true</static>
       <pose>7.0 -7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1178,7 +1048,7 @@
     </model>
     
     <!-- Wall at grid (8, 2) -->
-    <model name="wall_43">
+    <model name="wall_38">
       <static>true</static>
       <pose>7.0 -5.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1204,7 +1074,7 @@
     </model>
     
     <!-- Wall at grid (8, 3) -->
-    <model name="wall_44">
+    <model name="wall_39">
       <static>true</static>
       <pose>7.0 -3.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1230,7 +1100,7 @@
     </model>
     
     <!-- Wall at grid (8, 4) -->
-    <model name="wall_45">
+    <model name="wall_40">
       <static>true</static>
       <pose>7.0 -1.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1256,7 +1126,7 @@
     </model>
     
     <!-- Wall at grid (8, 5) -->
-    <model name="wall_46">
+    <model name="wall_41">
       <static>true</static>
       <pose>7.0 1.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1282,7 +1152,7 @@
     </model>
     
     <!-- Wall at grid (8, 6) -->
-    <model name="wall_47">
+    <model name="wall_42">
       <static>true</static>
       <pose>7.0 3.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1308,7 +1178,7 @@
     </model>
     
     <!-- Wall at grid (8, 7) -->
-    <model name="wall_48">
+    <model name="wall_43">
       <static>true</static>
       <pose>7.0 5.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1334,7 +1204,7 @@
     </model>
     
     <!-- Wall at grid (8, 8) -->
-    <model name="wall_49">
+    <model name="wall_44">
       <static>true</static>
       <pose>7.0 7.0 0.5 0 0 0</pose>
       <link name="link">
@@ -1372,9 +1242,9 @@
             </cylinder>
           </geometry>
           <material>
-            <ambient>0 1 0 1</ambient>
-            <diffuse>0 1 0 1</diffuse>
-            <emissive>0 0.5 0 1</emissive>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
       </link>
@@ -1383,7 +1253,7 @@
     <!-- End Point (Red) -->
     <model name="end_marker">
       <static>true</static>
-      <pose>5.0 -1.0 0.001 0 0 0</pose>
+      <pose>1.0 -1.0 0.001 0 0 0</pose>
       <link name="link">
         <visual name="visual">
           <geometry>
@@ -1393,9 +1263,9 @@
             </cylinder>
           </geometry>
           <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-            <emissive>0.5 0 0 1</emissive>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
       </link>

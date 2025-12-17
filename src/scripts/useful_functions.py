@@ -42,7 +42,7 @@ def compute_next_goal(maze_name):
     return gridToWorld(random.choice(free_indicies))
 
 
-def get_tsp_waypoints(occupancy_grid, num=10):
+def get_tsp_waypoints(occupancy_grid, num=3):
     free_indicies = []
     for i in range(len(occupancy_grid)):
         for j in range(len(occupancy_grid[0])):
