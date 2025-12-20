@@ -156,7 +156,7 @@ def generateSDF(start, end, filename="maze_world.sdf"):
     
     <!-- Physics -->
     <physics name="1ms" type="ignored">
-      <max_step_size>0.001</max_step_size>
+      <max_step_size>0.01</max_step_size>
       <real_time_factor>1.0</real_time_factor>
     </physics>
     
@@ -171,7 +171,7 @@ def generateSDF(start, end, filename="maze_world.sdf"):
     
     <!-- Lighting -->
     <light type="directional" name="sun">
-      <cast_shadows>true</cast_shadows>
+      <cast_shadows>false</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.2 0.2 0.2 1</specular>
