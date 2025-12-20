@@ -43,14 +43,17 @@ In the subsequent weeks, I focused on implementing a simulated annealing algorit
 I also implemented a visualization system using matplotlib animations that shows the maze layout, all waypoints, the full path, and an animated line that traces the robot's planned trajectory from start to finish.
 
 ## Example generated mazes
-### Maze 5x5
-![Maze 5x5](src/images/5x5.png)
-
 ### Maze 9x9
-![Maze 9x9](src/images/9x9.png)
+<img width="647" height="627" alt="maze9x9" src="https://github.com/user-attachments/assets/eee0d752-1f2a-4f18-b798-fbbbd89a8a3c" />
 
-### Maze 15x15
-![Maze 15x15](src/images/15x15.png)
+
+### Maze 17x17
+<img width="621" height="620" alt="maze17x17" src="https://github.com/user-attachments/assets/89ac2af5-eb19-4111-9ad4-d07f918bab8c" />
+
+
+### Maze 25x25
+<img width="841" height="831" alt="maze25x25" src="https://github.com/user-attachments/assets/73b8c0f6-0fd4-42b4-941b-afc759fd00cc" />
+
 
 ## TSP visualization
 https://github.com/user-attachments/assets/47f6d087-a449-45b8-b887-8e1df4986d2f
