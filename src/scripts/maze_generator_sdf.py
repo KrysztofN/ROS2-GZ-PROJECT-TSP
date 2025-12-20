@@ -13,8 +13,8 @@ from pathlib import Path
 import os
 
 # Maze generation parameters
-WIDTH = 9  # Width of the maze (must be odd)
-HEIGHT = 9  # Height of the maze (must be odd)
+WIDTH = 9  # Width of the maze 
+HEIGHT = 9  # Height of the maze 
 CELL_SIZE = 2.0  # Size of each cell in meters
 WALL_HEIGHT = 1.0  # Height of walls in meters
 WORLDS_DIR = Path("../worlds/mazes")
