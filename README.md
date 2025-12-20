@@ -56,7 +56,12 @@ I also implemented a visualization system using matplotlib animations that shows
 
 
 ## TSP visualization
-https://github.com/user-attachments/assets/47f6d087-a449-45b8-b887-8e1df4986d2f
+### SA solution (S = 62 meters)
+https://github.com/user-attachments/assets/3889d9ba-d7d0-41e2-869b-84523ff5b62d
+
+### Held-Karp solution (S =  58 meters)
+https://github.com/user-attachments/assets/7cc036dd-8817-4c37-a663-9691cbdd1bb6
+
 
 ## Gazebo simulation
 https://github.com/user-attachments/assets/e856a067-3093-4311-9b94-f473b074fc70
