@@ -127,7 +127,7 @@ def selectStartEnd():
     if len(empty_spaces) < 2:
         raise ValueError("Not enough empty spaces for start and end points")
     
-    # Select two random different points
+    # Selecting two random different points
     start = random.choice(empty_spaces)
     empty_spaces.remove(start)
     end = random.choice(empty_spaces)
@@ -213,7 +213,7 @@ def generateSDF(start, end, filename="maze_world.sdf"):
     
 '''
     
-    # Generate walls
+    # Generating walls
     wall_id = 0
     for x in range(WIDTH):
         for y in range(HEIGHT):
@@ -295,7 +295,7 @@ def generateSDF(start, end, filename="maze_world.sdf"):
         </visual>
       </link>
     </model>'''
-    # Calculate robot spawn position at start point
+    # Calculating robot spawn position at start point
     robot_x, robot_y = gridToWorld(start[0], start[1])
     
     sdf_content += f'''    
@@ -352,7 +352,6 @@ def batch(i, json_content):
     
     # Adding multiple solution paths
     num_removed = add_multiple_paths(maze, num_walls_to_remove=NUM_WALLS_TO_REMOVE)
-    print(f"  Removed {num_removed} walls to create alternative paths")
     
     start, end = selectStartEnd()
     
