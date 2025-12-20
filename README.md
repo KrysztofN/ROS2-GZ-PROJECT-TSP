@@ -1,6 +1,6 @@
 # TSP Solver Robot with ROS2 and Gazebo
 
-This project implements an autonomous robot that solves the Traveling Salesman Problem (TSP) in a maze environment using ROS2 Jazzy and Gazebo Harmonic. The robot uses simulated annealing optimization combined with A* pathfinding to efficiently navigate through waypoints in a procedurally generated maze.
+This project implements an autonomous robot that solves the Traveling Salesman Problem (TSP) in a maze environment using ROS2 Jazzy and Gazebo Harmonic. The robot uses 2 methods for solving tsp (simulated annealing and Held-Karp) combined with A* pathfinding to efficiently navigate through waypoints in a procedurally generated maze. The robot needs to overcome few challanges along the way like respecting traffic lights and avoiding hitting objects. 
 
 ## Key Features
 
