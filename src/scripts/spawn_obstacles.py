@@ -4,6 +4,7 @@ import subprocess
 import sys
 import json
 import random
+import time
 
 class ObstacleChanger(Node):
     def __init__(self, maze_name, marker_positions, cone_positions):
@@ -15,15 +16,16 @@ class ObstacleChanger(Node):
         self.marker_states = [True] * len(marker_positions) 
         self.cone_states = [True] * len(cone_positions) 
         
-        # Timers for markers
+        # Timers for markers with random offsets
         for i in range(len(marker_positions)):
-            self.create_timer(12.0, lambda idx=i: self.toggle_marker(idx))
+            offset = random.uniform(0, 6.0)
+            self.create_timer(offset + 12, lambda idx=i: self.toggle_marker(idx))
         
-        # Timers for cones
+        # Timers for cones with random offsets
         for i in range(len(cone_positions)):
-            self.create_timer(12.0, lambda idx=i: self.toggle_cone(idx))
+            offset = random.uniform(0, 6.0)
+            self.create_timer(offset + 12, lambda idx=i: self.toggle_cone(idx))
         
-
         self.get_logger().info(f'Traffic lights and cones initialized!')
     
     def toggle_marker(self, marker_idx):
@@ -34,14 +36,17 @@ class ObstacleChanger(Node):
         
         if is_red:
             self.remove_marker(f"stop_marker_{marker_id}_red")
+            time.sleep(1)
             self.spawn_marker(x, y, f"stop_marker_{marker_id}_green", 0.0, 1.0, 0.0)
             self.get_logger().info(f'Traffic light {marker_id} changed to GREEN!')
             self.marker_states[marker_idx] = False
         else:
             self.remove_marker(f"stop_marker_{marker_id}_green")
+            time.sleep(1)
             self.spawn_marker(x, y, f"stop_marker_{marker_id}_red", 1.0, 0.0, 0.0)
             self.get_logger().info(f'Traffic light {marker_id} changed to RED!')
             self.marker_states[marker_idx] = True
+        
     
     def toggle_cone(self, cone_idx):
         x, y = self.cone_positions[cone_idx]
@@ -51,12 +56,15 @@ class ObstacleChanger(Node):
         
         if cone_present:
             self.remove_marker(f"stop_cone_{cone_id}")
+            time.sleep(1)
             self.get_logger().info(f'Cone {cone_id} removed!')
             self.cone_states[cone_idx] = False
         else:
             self.spawn_cone(x, y, f"stop_cone_{cone_id}")
+            time.sleep(1)
             self.get_logger().info(f'Cone {cone_id} spawned!')
             self.cone_states[cone_idx] = True
+        
     
     def remove_marker(self, marker_name):
         cmd = [
@@ -123,6 +131,7 @@ class ObstacleChanger(Node):
             self.get_logger().error(f'Error spawning cone {cone_name}: {e}')
 
 
+
 def gridToWorld(path, width=9, height=9, cell_size=2.0):
     new_path = []
     for coordinates in path:
@@ -134,12 +143,16 @@ def gridToWorld(path, width=9, height=9, cell_size=2.0):
     return new_path
 
 
-def get_traffic_light_stops(occupancy_grid, num=3):
+def get_traffic_light_stops(occupancy_grid, num, start_point, end_point):
+    start = (start_point["x"], start_point["y"])
+    end = (end_point["x"], end_point["y"])
+
     free_indices = []
     for i in range(len(occupancy_grid)):
         for j in range(len(occupancy_grid[0])):
-            if occupancy_grid[i][j] == 0:
-                free_indices.append((j, i))
+            current_pos = (j, i) 
+            if occupancy_grid[i][j] == 0 and current_pos != start and current_pos != end:
+                free_indices.append(current_pos)
     return random.sample(free_indices, min(num, len(free_indices)))
 
 
@@ -152,11 +165,13 @@ def main(args=None):
         data = json.load(file)
     
     maze_map = data[maze_name]["occupancy_grid"]
+    start_point = data[maze_name]["start_point"]["grid"]
+    end_point = data[maze_name]["end_point"]["grid"]
     
-    marker_positions_grid = get_traffic_light_stops(maze_map, num_of_traffic_lights)
+    marker_positions_grid = get_traffic_light_stops(maze_map, num_of_traffic_lights, start_point, end_point)
     marker_positions_world = gridToWorld(marker_positions_grid)
     
-    all_positions = get_traffic_light_stops(maze_map, num_of_traffic_lights + num_of_cones)
+    all_positions = get_traffic_light_stops(maze_map, num_of_traffic_lights + num_of_cones, start_point, end_point)
     cone_positions_grid = all_positions[num_of_traffic_lights:]  
     cone_positions_world = gridToWorld(cone_positions_grid)
     
