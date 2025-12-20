@@ -2,7 +2,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import Image, LaserScan
 from cv_bridge import CvBridge
 import cv2
 import numpy as np
@@ -19,9 +19,14 @@ class WaypointNavigator(Node):
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.odom_sub = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
         self.camera_sub = self.create_subscription(Image, '/camera/bottom', self.camera_callback, 10)
+        self.lidar_sub = self.create_subscription(LaserScan, '/lidar', self.lidar_callback, 10)
         
         self.bridge = CvBridge()
         self.is_stopped_at_red = False
+        self.is_obstacle_ahead = False
+        
+        self.obstacle_distance_threshold = 0.6  
+        self.obstacle_angle_range = 20.0  
         
         maze_name = sys.argv[1]
         with open('../worlds/config/maze_mapping.json', 'r') as file:
@@ -67,6 +72,34 @@ class WaypointNavigator(Node):
         self.timer = self.create_timer(0.1, self.control_loop)
         
         self.get_logger().info('Waypoint Navigator initialized')
+    
+    def lidar_callback(self, msg):
+        angle_min = msg.angle_min
+        angle_increment = msg.angle_increment
+        ranges = msg.ranges
+        
+        front_angle_rad = math.radians(self.obstacle_angle_range)
+        
+        obstacle_detected = False
+        min_distance = float('inf')
+        
+        for i, distance in enumerate(ranges):
+            current_angle = angle_min + i * angle_increment
+            
+            if abs(current_angle) <= front_angle_rad:
+                if not math.isinf(distance) and not math.isnan(distance):
+                    if distance < min_distance:
+                        min_distance = distance
+                    
+                    if distance < self.obstacle_distance_threshold:
+                        obstacle_detected = True
+        
+        if obstacle_detected and not self.is_obstacle_ahead:
+            self.get_logger().warn(f'OBSTACLE ON THE ROAD! Distance: {min_distance:.2f}m - Waiting...')
+            self.is_obstacle_ahead = True
+        elif not obstacle_detected and self.is_obstacle_ahead:
+            self.get_logger().info('Obstacle cleared! Resuming navigation...')
+            self.is_obstacle_ahead = False
     
     def camera_callback(self, msg):
         try:
@@ -154,9 +187,14 @@ class WaypointNavigator(Node):
         if not self.odom_received:
             return
         
+        if self.is_obstacle_ahead:
+            self.stop_robot()
+            return
+        
         if self.is_stopped_at_red:
             self.stop_robot()
             return
+        
         
         if self.current_waypoint_idx >= len(self.waypoints):
             self.get_logger().info('All waypoints reached!')
