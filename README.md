@@ -70,8 +70,7 @@ https://github.com/user-attachments/assets/3889d9ba-d7d0-41e2-869b-84523ff5b62d
 
 A|B
 --|--
-![d1](https://github.com/user-attachments/assets/a8b2f016-7b4a-48ff-97ec-3244d9c7c507)
-![d2](https://github.com/user-attachments/assets/62f54e93-7900-4d0e-84d6-bf4392ff8103)
+![d1](https://github.com/user-attachments/assets/a8b2f016-7b4a-48ff-97ec-3244d9c7c507)|![d2](https://github.com/user-attachments/assets/62f54e93-7900-4d0e-84d6-bf4392ff8103)
 
 
 
