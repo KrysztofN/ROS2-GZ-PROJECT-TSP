@@ -76,4 +76,8 @@ https://github.com/user-attachments/assets/4bde4b0f-294f-4a2e-8894-29e1d0f496bd
 ### Traffic lights detection
 https://github.com/user-attachments/assets/976964ce-0459-4744-bc01-1ac32a947987
 
+### Full run
+https://github.com/user-attachments/assets/db7741c8-02bd-4429-ac0f-878524b3e726
+
+
 
