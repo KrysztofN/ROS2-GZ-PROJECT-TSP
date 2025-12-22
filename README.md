@@ -71,5 +71,10 @@ https://github.com/user-attachments/assets/3889d9ba-d7d0-41e2-869b-84523ff5b62d
 https://github.com/user-attachments/assets/7cc036dd-8817-4c37-a663-9691cbdd1bb6
 
 
-## Obstacle Avoidance
-https://github.com/user-attachments/assets/e856a067-3093-4311-9b94-f473b074fc70
+### Obstacle detection
+https://github.com/user-attachments/assets/4bde4b0f-294f-4a2e-8894-29e1d0f496bd
+
+### Traffic lights detection
+https://github.com/user-attachments/assets/976964ce-0459-4744-bc01-1ac32a947987
+
+
